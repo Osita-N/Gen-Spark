@@ -44,10 +44,10 @@ public class GuessTheNumber {
 			}
 		}//.while
 		
-		while((a < r || a > r) && t > 0) {
+		while((a < r || a > r) && t < 6) {					
 			
 			// When guess is too low
-			while (a < r) {
+			while (a < r && t < 6) {
 				
 				System.out.println("\n\n\n\nYour guess is too low\n\n"+"Take a guess.\n\n\n\n");
 				String ans = input.nextLine();
@@ -56,15 +56,14 @@ public class GuessTheNumber {
 					
 					a = Integer.valueOf(ans);
 					t++;
-					//System.out.println("this is try count: "+t);
 					
 				}catch(NumberFormatException e) {
 					
 				}	
-			}//.if
+			}//.while
 			
 			// When guess is to high
-			while (a > r) {
+			while (a > r && t < 6) {
 				
 				System.out.println("\n\n\n\nYour guess is too high\n\n"+"Take a guess.\n\n\n\n");
 				String ans = input.nextLine();
@@ -77,25 +76,29 @@ public class GuessTheNumber {
 				}catch(NumberFormatException e) {
 					
 				}	
-			}//.if
+			}//.while
 			
 			// When guess is perfect
 			if (a == r) {
 				
 				System.out.println("\n\n\n\nGood job, "+name+"! You guessed my number in "+t+" guessess!\n\n"
-									+"Would you like to play again? (y or n)\n\n\n\n");
-				String ans = input.nextLine();
+									+"Would you like to play again? (y or n)\n\n\n\n");				 
+				 String ans = input.nextLine();
 								
-			}//.if
+			}//.if		
 			
 			// When the max amounts of tries are made
 			if (t == 6) {
-				System.out.println("Better luck next time.\n\n"
+				
+				System.out.println("\n\n\n\nBetter luck next time.\n\n"
 									+"you ran out of your "+t+" tries");
-			}
-			
+							
+			}//.if
+						
 			// Exits the program
+			System.out.println("\n\n\n\nProcess finshed with exit code 0");		
 			System.exit(0);
+									
 			
 		}//.while
 		
