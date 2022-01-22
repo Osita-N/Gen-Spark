@@ -14,7 +14,7 @@ public class GuessTheNumber {
 		int r = rand.nextInt(20)-1;
 		
 		// Boolean for while loop
-		boolean w = true;
+		boolean w = false;
 		
 		// Answer given by user
 		int a = 0;
@@ -22,9 +22,11 @@ public class GuessTheNumber {
 		// Number of tries
 		int t = 6;
 		
+		// Takes in the user Name
 		System.out.print("Hello! What is your name?\n\n\n\n");
 		String name = input.nextLine();
 		
+		// Take in the users first guess
 		while (a <= 1 || a >= 20) {
 			
 			System.out.print("\n\n\n\n"+"Well, "+ name +", I am thinking of a number between 1 and 20.\n\n"
@@ -33,65 +35,67 @@ public class GuessTheNumber {
 			
 			try {
 				
-				a = Integer.valueOf(ans);
+				a = Integer.valueOf(ans);		
 				
 			}catch(NumberFormatException e){
 				
 				a = 0;
 				
 			}
-		}// end while
+		}//.while
 		
-		while(a < r || a > r) {
+		while((a < r || a > r) && t > 0) {
 			
+			// When guess is too low
 			if (a < r) {
 				
-				System.out.println("Your too low");
+				System.out.println("Your guess is too low\n\n"+"Take a guess.\n\n\n\n");
 				String ans = input.nextLine();
 				
 				try {
 					
 					a = Integer.valueOf(ans);
+					t--;
+					//System.out.println("this is try count: "+t);
 					
 				}catch(NumberFormatException e) {
 					
-				}
-				
-				
-			}// end for
+				}	
+			}//.if
 			
+			// When guess is to high
 			if (a > r) {
 				
-				System.out.println("Your too high");
+				System.out.println("Your guess is too high\n\n"+"Take a guess.\n\n\n\n");
 				String ans = input.nextLine();
 				
 				try {
 					
 					a = Integer.valueOf(ans);
+					t--;
+					//System.out.println("this is try count: "+t);
 					
 				}catch(NumberFormatException e) {
 					
-				}
-				
-				
-				
-			}
+				}	
+			}//.if
 			
-			
+			// When guess is perfect
 			if (a == r) {
 				
-				System.out.println("You got it");
+				System.out.println("Good job, "+name+"! You guessed my number in "+t+" guessess!\n\n"
+									+"Would you like to play again? (y or n)\n\n\n\n");
+								
+			}//.if
+			
+			// When the max amounts of tries are made
+			if (t == 0) {
+				System.out.println("Better luck next time.\n\n"
+									+"you ran out of your "+t+" tries");
 			}
 			
-			
-			
-		}// end while
-		
-		
-		
+		}//.while
 		
 	}// End Main
-	
-	//public static boolean toHigh()
 
 }// End Class
