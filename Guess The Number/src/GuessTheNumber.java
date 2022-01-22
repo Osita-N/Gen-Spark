@@ -49,7 +49,7 @@ public class GuessTheNumber {
 			// When guess is too low
 			if (a < r) {
 				
-				System.out.println("Your guess is too low\n\n"+"Take a guess.\n\n\n\n");
+				System.out.println("\n\n\n\nYour guess is too low\n\n"+"Take a guess.\n\n\n\n");
 				String ans = input.nextLine();
 				
 				try {
@@ -66,7 +66,7 @@ public class GuessTheNumber {
 			// When guess is to high
 			if (a > r) {
 				
-				System.out.println("Your guess is too high\n\n"+"Take a guess.\n\n\n\n");
+				System.out.println("\n\n\n\nYour guess is too high\n\n"+"Take a guess.\n\n\n\n");
 				String ans = input.nextLine();
 				
 				try {
@@ -83,7 +83,7 @@ public class GuessTheNumber {
 			// When guess is perfect
 			if (a == r) {
 				
-				System.out.println("Good job, "+name+"! You guessed my number in "+t+" guessess!\n\n"
+				System.out.println("\n\n\n\nGood job, "+name+"! You guessed my number in "+t+" guessess!\n\n"
 									+"Would you like to play again? (y or n)\n\n\n\n");
 								
 			}//.if
