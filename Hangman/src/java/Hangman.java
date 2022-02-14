@@ -1,4 +1,3 @@
-import javax.swing.plaf.synth.SynthDesktopIconUI;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -70,6 +69,7 @@ public class Hangman {
 
     public static void printOut(StringBuilder correctLetters, StringBuilder incorrectLetters) {
 
+        //Turns chosen word into string
         String word = getWord();
 
         //Length of hidden word
@@ -85,46 +85,59 @@ public class Hangman {
         String twoLines = "\n\n";
         String fourLines = "\n\n\n\n";
 
+        //Builds hangman
         String head = "O";
         String body = "|";
         String legs = "|";
         String blank = "    ";
 
-
         do {
+            //Game title
+            System.out.print(fourLines + "H A N G M A N" + twoLines);
 
+            //Top
+            System.out.print("+---+" + twoLines);
 
-                //Game title
-                System.out.print(fourLines + "H A N G M A N" + twoLines);
+            //Head
+            if (incorrectLetters.length() > 0) System.out.print(head + "   " + "|" + twoLines);
+            else System.out.print(blank + "|" + twoLines);
 
-                System.out.print("+---+" + twoLines);
+            //Body
+            if (incorrectLetters.length() > 1) System.out.print(body + "   " + "|" + twoLines);
+            else System.out.print(blank + "|" + twoLines);
 
-                if (incorrectLetters.length() > 0) System.out.print(head + "   " + "|" + twoLines);
-                else System.out.print(blank + "|" + twoLines);
+            //Legs
+            if (incorrectLetters.length() > 2) System.out.print(legs + "   " + "|" + twoLines);
+            else System.out.print(blank + "|" + twoLines);
 
-                if (incorrectLetters.length() > 1) System.out.print(body + "   " + "|" + twoLines);
-                else System.out.print(blank + "|" + twoLines);
+            //Base
+            System.out.print("   " + "===" + twoLines);
 
-                if (incorrectLetters.length() > 2) System.out.print(legs + "   " + "|" + twoLines);
-                else System.out.print(blank + "|" + twoLines);
+            //Prints correct and Incorrect answers
+            System.out.println("Missed letters: " + incorrectLetters + twoLines);
+            System.out.println("correct: " + correctLetters + twoLines);
 
-                System.out.print("   " + "===" + twoLines);
+            //Exits the program when maximum number of incorrect tries are reached
+            if (incorrectLetters.length() == 3) {
+                System.out.print("Sorry, but you lose.");
+                System.exit(0);
+            }
 
-                System.out.println("Missed letters: " + incorrectLetters + twoLines);
-                System.out.println("correct: " + correctLetters + twoLines);
+            //Exits the program when the correct work is made
+            if (correctLetters.substring(0, correctLetters.length()).compareToIgnoreCase(word) == 0) {
+                System.out.print("You win!!!!");
+                System.exit(0);
+            }
 
-                checkLetter(getInput(), word, correctLetters, incorrectLetters);
-
+            //Get input and checks weather the letter works
+            checkLetter(getInput(), word, correctLetters, incorrectLetters);
 
         } while ((incorrectLetters.length() <= 3));
-
-        System.out.print(twoLines + "Sorry, but you lose.");
 
     }
 
     //Main
     public static void main(String[] args) {
-
         //String holder
         StringBuilder incorrectLetters = new StringBuilder();
         StringBuilder correctLetters = new StringBuilder();
